@@ -520,7 +520,7 @@ const courseResults = {
                 nickname: '', 
                 participation: 'S', 
                 leavers: 'N/A', 
-                teacherComments: '',
+                teacherComments: 'Thank you for being an amazing student Card! I could tell early on that you came in quite low but knew that you would be fine when I saw your organisation, dedication and work ethic. Your biggest improvements have been in your speaking and listening. Well done!',
                 overallGrades: {
                     reading: 'C',
                     writing: 'C',

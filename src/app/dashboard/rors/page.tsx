@@ -34,23 +34,22 @@ export default function Page () {
             studentId: studentResult.student.studentId,
             firstName: studentResult.student.firstName,
         }
-    });
-    
-    console.log(courseResults);
-    
+    });    
 
     return (
-        <div>
-            <p>Rors Page</p>
-            <StudentTabsWrapper 
-                activeIndex={activeIndex} 
-                setActiveIndex={setActiveIndex}
-                studentTabsText={studentTabsText ?? []}
-            />
-            <RecordOfResults 
-                courseMetaData={courseResults?.courseMetaData || {}} 
-                activeStudent={courseResults?.studentResults[activeIndex] || {}}
-            />
+        <div className="grid justify-items-center">
+            <div className="max-w-5xl">
+                <p className="text-xs">Rors Page</p>
+                <StudentTabsWrapper 
+                    activeIndex={activeIndex} 
+                    setActiveIndex={setActiveIndex}
+                    studentTabsText={studentTabsText ?? []}
+                />
+                <RecordOfResults
+                    courseMetaData={courseResults?.courseMetaData || {}} 
+                    activeStudent={courseResults?.studentResults[activeIndex] || {}}
+                />
+            </div>
         </div>
     )
 }

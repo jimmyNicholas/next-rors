@@ -12,7 +12,7 @@ export default function StudentTabsWrapper({
 }) {
 
     return (
-        <div className="grid lg:grid-cols-9 md:grid-cols-6 text-black gap-2">
+        <div className="grid lg:grid-cols-9 md:grid-cols-6 text-black gap-2 w-6xl">
             {studentTabsText.map((student, index: number) => (
                 <StudentTab 
                     key={index}
@@ -49,8 +49,8 @@ export function StudentTab({
                 },
             )}
             >
-            <h3>{studentId}</h3>
-            <h3  className="block lg:block sm:hidden">{firstName}</h3>
+            <h3 className="block lg:block sm:hidden">{studentId}</h3>
+            <h3>{firstName}</h3>
         </div>
     );
 }
