@@ -1,12 +1,13 @@
 import React from "react";
+import { CourseMetaData, StudentResult } from "@/app/lib/definitions";
 
 
 export default function RecordOfResults({
     courseMetaData,
-    activeStudent,
+    studentResult,
 }: {
-    courseMetaData: object;
-    activeStudent: object;
+    courseMetaData: CourseMetaData;
+    studentResult: StudentResult;
 }) {
     const {
         course, 
@@ -17,7 +18,7 @@ export default function RecordOfResults({
     const {
         student, 
         results,
-    } = activeStudent;
+    } = studentResult;
 
     const {
         studentId,

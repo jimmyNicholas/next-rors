@@ -36,10 +36,10 @@ export type Students = Student[];
 export type Results = {
     id: string;
     studentId: string;
-    grammar: string[] | number[];
-    vocabulary: string[] | number[];
-    listening: string[] | number[];
-    reading: string[] | number[];
+    grammar: (string | number)[];
+    vocabulary: (string | number)[];
+    listening: (string | number)[];
+    reading: (string | number)[];
     writing: string[];
     speaking: string[];
     pronunciation: string[];

@@ -6,7 +6,6 @@ import { CourseResults } from "@/app/lib/definitions"
 import StudentTabsWrapper from "@/app/ui/rors/studentTabs";
 import RecordOfResults from "@/app/ui/rors/recordOfResult";
 import { useState, useEffect } from "react";
-import { metadata } from "@/app/layout";
 
 export default function Page () {
     const [courseResults, setCourseResults] = useState<CourseResults | undefined>(undefined);
@@ -45,10 +44,12 @@ export default function Page () {
                     setActiveIndex={setActiveIndex}
                     studentTabsText={studentTabsText ?? []}
                 />
-                <RecordOfResults
-                    courseMetaData={courseResults?.courseMetaData || {}} 
-                    activeStudent={courseResults?.studentResults[activeIndex] || {}}
-                />
+                {!loading && courseResults ? (
+                    <RecordOfResults
+                        courseMetaData={courseResults.courseMetaData} 
+                        studentResult={courseResults.studentResults[activeIndex]}
+                    />
+                ) : null}
             </div>
         </div>
     )
