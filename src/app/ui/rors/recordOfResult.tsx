@@ -81,7 +81,7 @@ export default function RecordOfResults({
     };
 
     return(  
-        <div className="bg-white my-3 text-black p-2 min-w-full">    
+        <div className="bg-white my-3 text-black p-2 min-w-full rounded-lg">    
             <h1 className="font-bold text-2xl text-center py-1">Record Of Results</h1>
 
             <div className="grid grid-cols-10 grid-flow-row mb-3 border border-black text-sm">
@@ -161,7 +161,7 @@ export default function RecordOfResults({
                 <h4 className="px-1 mx-2 border border-black">{ teacherComments ? teacherComments : '...'}</h4>
             </div>
             <div className="flex justify-center">
-                <table className="text-xs mx-6 my-3 w-full">
+                <table className="text-xs mx-6 my-3 w-full border border-black">
                     <caption className="caption-bottom text-xs italic">
                         {`* For an overall A for there should be at least two A’s on tasks. Teachers, please enter speaking and writing results every week.`}
                     </caption>

@@ -443,6 +443,176 @@ const courseResults = {
 }
 
 
+const listeningResults = [
+    {
+        id: 'L1',
+        date: '28/05/2024',
+        skill: 'listening',
+        week: 1,
+        totalQuestions: 13,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partOne: 1,
+                partTwo: 1,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partOne: 5,
+                partTwo: 2,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partOne: 4,
+                partTwo: 0,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+];
 
+const readingResults = [
+    {
+        id: 'R2',
+        date: '04/06/2024',
+        skill: 'reading',
+        week: 2,
+        totalQuestions: 10,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partOne: 2,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partOne: 5,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partOne: 2,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+];
 
-export { courseMetaData, students, courseResults}
+const writeSpeakPronResults = [
+    {
+        week: 1,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                writing: 'C',
+                speaking: 'C',
+                pronunciation: 'C',
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                writing: 'B',
+                speaking: 'B',
+                pronunciation: 'B',
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                writing: 'B',
+                speaking: 'C',
+                pronunciation: 'D',
+            },
+        ],    
+    },
+];
+
+const grammarVocabularyResults = [
+    {
+        id: 'GV1',
+        date: '03/06/2024',
+        skill: 'grammar and vocabulary',
+        week: 1,
+        totalGrammarQuestions: 16,
+        totalVocabularyQuestions: 16,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partTwo: 6,
+                partThree: 4,
+                partFour: 7,
+                partFive: 2,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partTwo: 0,
+                partThree: 0,
+                partFour: 0,
+                partFive: 0,
+                comments: '',
+                absent: true,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partTwo: 5,
+                partThree: 5,
+                partFour: 7,
+                partFive: 2,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+];
+
+const results = {
+    grammarVocabularyResults,
+    listeningResults,
+    readingResults,
+    writeSpeakPronResults,
+};
+
+export { courseMetaData, students, courseResults, results}
