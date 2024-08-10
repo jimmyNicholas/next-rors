@@ -608,6 +608,233 @@ const grammarVocabularyResults = [
     },
 ];
 
+const testResults = {
+    'G1': {
+        id: 'G1',
+        date: '03/06/2024',
+        skill: 'grammar',
+        week: 1,
+        totalQuestions: 16,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partFour: 7,
+                partFive: 2,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partFour: 0,
+                partFive: 0,
+                comments: '',
+                absent: true,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partFour: 7,
+                partFive: 2,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+    'V1': {
+        id: 'V1',
+        date: '03/06/2024',
+        skill: 'vocabulary',
+        week: 1,
+        totalQuestions: 16,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partTwo: 6,
+                partThree: 4,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partTwo: 0,
+                partThree: 0,
+                comments: '',
+                absent: true,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partTwo: 5,
+                partThree: 5,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+    'L1': {
+        id: 'L1',
+        date: '28/05/2024',
+        skill: 'listening',
+        week: 1,
+        totalQuestions: 13,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partOne: 1,
+                partTwo: 1,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partOne: 5,
+                partTwo: 2,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partOne: 4,
+                partTwo: 0,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+    'R2': {
+        id: 'R2',
+        date: '04/06/2024',
+        skill: 'reading',
+        week: 2,
+        totalQuestions: 10,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                partOne: 2,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                partOne: 5,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                partOne: 2,
+                partTwo: 3,
+                partThree: 0,
+                partFour: 0,
+                comments: '',
+                absent: false,
+                na: false,
+            },
+        ],
+    },
+    'W1': {
+        id: 'W1',
+        skill: 'writing',
+        week: 1,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                grade: 'C',
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                grade: 'B',
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                grade: 'B',
+            },
+        ],    
+    },
+    'S1': {
+        id: 'S1',
+        skill: 'speaking',
+        week: 1,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                grade: 'C',
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                grade: 'B',
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                grade: 'B',
+            },
+        ],    
+    },
+    'P1': {
+        id: 'P1',
+        skill: 'pronunciation',
+        week: 1,
+        results: [
+            { 
+                studentId: '25602',
+                firstName: 'Card Napolian',
+                grade: 'C',
+            },
+            { 
+                studentId: '25675',
+                firstName: 'Elmer Andy',
+                grade: 'B',
+            },
+            { 
+                studentId: '26325',
+                firstName: 'Tirakanal',
+                grade: 'D',
+            },
+        ],    
+    },
+};
+
+
+
 const results = {
     grammarVocabularyResults,
     listeningResults,
@@ -615,4 +842,4 @@ const results = {
     writeSpeakPronResults,
 };
 
-export { courseMetaData, students, courseResults, results}
+export { courseMetaData, students, courseResults, results, testResults}

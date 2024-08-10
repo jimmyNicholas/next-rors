@@ -60,83 +60,43 @@ export type StudentTabsText = {
     firstName: string;
 }
 
-interface BaseResult {
+type StudentTestResult = {
     studentId: string;
     firstName: string;
-}
+} & (
+    | {
+        partOne?: number;
+        partTwo?: number;
+        partThree?: number;
+        partFour?: number;
+        partFive?: number;
+        comments?: string;
+        absent: boolean;
+        na: boolean;
+        grade?: never;
+    }
+    | {
+        partOne?: never;
+        partTwo?: never;
+        partThree?: never;
+        partFour?: never;
+        partFive?: never;
+        comments?: never;
+        absent?: never;
+        na?: never;
+        grade: string;
+    }
+)
 
-interface GrammarVocabularyResult extends BaseResult  {
-    partTwo: number;
-    partThree: number;
-    partFour: number;
-    partFive: number;
-    comments?: string;
-    absent: boolean;
-    na: boolean;
-}
-
-interface VocabularyResult extends BaseResult  {
-    partTwo: number;
-    partThree: number;
-    comments?: string;
-    absent: boolean;
-    na: boolean;
-}
-
-interface ListeningResult extends BaseResult  {
-    partOne: number;
-    partTwo: number;
-    partThree: number;
-    partFour: number;
-    comments?: string;
-    absent: boolean;
-    na: boolean;
-}
-
-interface ReadingResult extends BaseResult  {
-    partOne: number;
-    partTwo: number;
-    partThree: number;
-    partFour: number;
-    comments?: string;
-    absent: boolean;
-    na: boolean;
-}
-
-interface writingSpeakingPronunciationResult extends BaseResult {
-    writing?: string;
-    speaking?: string;
-    pronunciation?: string;
-}
-
-interface BaseResults<T> {
+export type TestResult = {
+    id: string;
+    date?: string;
+    skill: string;
     week: number;
-    results: T[];
+    totalQuestions?: number;
+    results: StudentTestResult[];
 }
-
-interface TotalQuestionResults<T> extends BaseResults<T> {
-    totalQuestions: number;
-    id: string;
-    date: string;
-    skill: string;
-}
-
-interface GramVocabResults<T> extends BaseResults<T> {
-    totalGrammarQuestions: number;
-    totalVocabularyQuestions: number;
-    id: string;
-    date: string;
-    skill: string;
-}
-
-export type GrammarVocabularyResults = GramVocabResults<GrammarVocabularyResult>;
-export type ListeningResults = TotalQuestionResults<ListeningResult>;
-export type ReadingResults = TotalQuestionResults<ReadingResult>;
-export type WriteSpeakPronResults = BaseResults<writingSpeakingPronunciationResult>;
 
 export type TestResults = {
-    grammarVocabularyResults: GrammarVocabularyResults[];
-    listeningResults: ListeningResults[];
-    readingResults: ReadingResults[];
-    writeSpeakPronResults: WriteSpeakPronResults[];
+    [key: string]: TestResult;
 }

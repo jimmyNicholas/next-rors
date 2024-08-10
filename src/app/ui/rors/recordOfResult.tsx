@@ -1,6 +1,6 @@
 import React from "react";
 import { CourseMetaData, StudentResult } from "@/app/lib/definitions";
-
+import Row from "../utility/Row";
 
 export default function RecordOfResults({
     courseMetaData,
@@ -51,34 +51,7 @@ export default function RecordOfResults({
         {title: 'Class', value: className},
         {title: 'Start Date', value: startDate},
         {title: 'Finish Date', value: endDate},
-    ]
-
-    function Row({
-        title,
-        cols = 10,
-        array = Array(cols),
-        style = "",
-    }: {
-        title: string;
-        cols?: number;
-        array?: (string|number)[];
-        style?: string;
-    }) {
-        
-        return (
-            <>
-                <div className={`col-span-2 p-0.5 ${style}`}>{title}</div>
-                {[...array, ...Array(cols - array.length)].map((x, i) => 
-                    <div 
-                        key={i}
-                        className={`col-span-1 p-0.5 text-center ${style}`}
-                    >
-                        {array[i]}
-                    </div>
-                )}
-            </>
-        );
-    };
+    ];
 
     return(  
         <div className="bg-white my-3 text-black p-2 min-w-full rounded-lg">    

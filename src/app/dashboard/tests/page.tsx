@@ -4,13 +4,16 @@ import { useState, useEffect } from "react";
 
 import { fetchResults } from "@/app/lib/data";
 import { TestResults } from "@/app/lib/definitions";
-import GrammarVocabularyTable from "./grammarVocabularyTable";
-import ReadingListeningTable from "./readingListeningTable";
-import WriteSpeakPronTable from "./writeSpeakPronTable";
+import TestInterface from "@/app/ui/tests/testsInterface";
+import { Table } from "@/app/ui/tests/table";
+import GrammarVocabularyTable from "../../ui/tests/grammarVocabularyTable";
+import ReadingListeningTable from "../../ui/tests/readingListeningTable";
+import WriteSpeakPronTable from "../../ui/tests/writeSpeakPronTable";
 
 export default function Page () {
     const [testResults, setTestResults] = useState<TestResults | undefined>(undefined);
     const [loading, setLoading] = useState(true);
+    const [activeTest, setActiveTest] = useState('G1');
 
     useEffect(() => {
         async function fetchTestResults() {
@@ -27,10 +30,21 @@ export default function Page () {
     }, []);
 
     if (loading) return <p>Loading...</p>;
+
+    console.log(testResults[activeTest]);
+    
+
     return (
         <div className="grid gap-5">
             <p>Tests Page</p>
-            {!loading && testResults ? (
+            <TestInterface setActiveTest={setActiveTest}/>
+            <Table activeTest={testResults[activeTest]}/>
+
+            {/* {!loading && testResults ? (
+                <GrammarVocabularyTable grammarVocabularyResults={testResults.grammarVocabularyResults}/>
+            ) : null} */}
+
+            {/* {!loading && testResults ? (
                 <GrammarVocabularyTable grammarVocabularyResults={testResults.grammarVocabularyResults}/>
             ) : null}
             
@@ -45,7 +59,7 @@ export default function Page () {
                 <WriteSpeakPronTable
                     writeSpeakPronResults={testResults.writeSpeakPronResults} 
                 />
-            ) : null}
+            ) : null} */}
         </div>
     )
 }
