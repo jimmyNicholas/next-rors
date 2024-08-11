@@ -4,7 +4,7 @@ export type Teachers = {
 }
 
 export type CourseMetaData = {
-    id: string;
+    id?: string;
     course: string;
     className: string;
     teachers: Teachers;
