@@ -1,6 +1,5 @@
 
 const courseMetaData = {
-    id: '3000',
     course: 'Extreme English',
     className: 'Foundation 1',
     teachers: {
