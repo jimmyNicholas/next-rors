@@ -1,4 +1,5 @@
-import { courseMetaData, students, courseResults, results, testResults } from "./placeholder-data";
+import { students, courseResults, results } from "./placeholder-data";
+import { courseMetaData, studentResults } from "./placeholder-data_v2";
 
 export async function fetchCourseMetaData() {    
     return courseMetaData;
@@ -9,9 +10,9 @@ export async function fetchStudents() {
 }
 
 export async function fetchCourseResults() {
-    return courseResults;
+    return {courseMetaData, studentResults};
 }
 
 export async function fetchResults() {
-    return testResults;
+    return studentResults;
 }

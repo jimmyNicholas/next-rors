@@ -11,9 +11,63 @@ const courseMetaData = {
 const students = [
     {
         id: '0',
+        studentId: '22884',
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
+        firstName: 'Itsami', 
+        lastName: 'Mario', 
+        nickname: '', 
+        participation: 'S', 
+        leavers: 'N/A', 
+        teacherComments: '',
+        overallGrades: {
+            reading: 'C',
+            writing: 'C',
+            speaking: 'D',
+            listening: 'E',
+        },
+    },
+    {
+        id: '1',
+        studentId: '25151', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
+        firstName: 'Yoyo', 
+        lastName: 'Mountain', 
+        nickname: 'Bounce', 
+        participation: 'S', 
+        leavers: 'N/A', 
+        teacherComments: '',
+        overallGrades: {
+            reading: 'A',
+            writing: 'C',
+            speaking: 'C',
+            listening: 'C'
+        },
+    },
+    {
+        id: '2',
+        studentId: '25884', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
+        firstName: 'Train', 
+        lastName: 'Martin Martini', 
+        nickname: '', 
+        participation: 'S', 
+        leavers: 'N/A', 
+        teacherComments: '',
+        overallGrades: {
+            reading: 'C',
+            writing: 'C',
+            speaking: 'C',
+            listening: 'E'
+        },
+    },
+    {
+        id: '3',
         studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Card Napolian', 
         lastName: 'Pinstripe Zulu', 
         nickname: '', 
@@ -28,64 +82,10 @@ const students = [
         },
     },
     {
-        id: '1',
-        studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
-        firstName: 'Elmer Andy', 
-        lastName: 'Garfield Manny', 
-        nickname: '', 
-        participation: 'S', 
-        leavers: 'N/A', 
-        teacherComments: '',
-        overallGrades: {
-            reading: 'A',
-            writing: 'C',
-            speaking: 'C',
-            listening: 'C'
-        },
-    },
-    {
-        id: '2',
-        studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
-        firstName: 'Tirakanal', 
-        lastName: 'Sinkarana', 
-        nickname: 'Jewel', 
-        participation: 'S', 
-        leavers: 'N/A', 
-        teacherComments: '',
-        overallGrades: {
-            reading: 'C',
-            writing: 'C',
-            speaking: 'C',
-            listening: 'E'
-        },
-    },
-    {
-        id: '3',
-        studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24',  
-        firstName: 'Card Napolian', 
-        lastName: 'Pinstripe Zulu', 
-        nickname: '', 
-        participation: 'S', 
-        leavers: 'N/A', 
-        teacherComments: '',
-        overallGrades: {
-            reading: 'C',
-            writing: 'C',
-            speaking: 'D',
-            listening: 'E'
-        },
-    },
-    {
         id: '4',
         studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Elmer Andy', 
         lastName: 'Garfield Manny', 
         nickname: '', 
@@ -102,8 +102,8 @@ const students = [
     {
         id: '5',
         studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Tirakanal', 
         lastName: 'Sinkarana', 
         nickname: 'Jewel', 
@@ -120,8 +120,8 @@ const students = [
     {
         id: '6',
         studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Card Napolian', 
         lastName: 'Pinstripe Zulu', 
         nickname: '', 
@@ -132,14 +132,14 @@ const students = [
             reading: 'C',
             writing: 'C',
             speaking: 'D',
-            listening: 'E'
+            listening: 'E',
         },
     },
     {
         id: '7',
         studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Elmer Andy', 
         lastName: 'Garfield Manny', 
         nickname: '', 
@@ -156,8 +156,8 @@ const students = [
     {
         id: '8',
         studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Tirakanal', 
         lastName: 'Sinkarana', 
         nickname: 'Jewel', 
@@ -174,8 +174,8 @@ const students = [
     {
         id: '9',
         studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24',  
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Card Napolian', 
         lastName: 'Pinstripe Zulu', 
         nickname: '', 
@@ -186,14 +186,14 @@ const students = [
             reading: 'C',
             writing: 'C',
             speaking: 'D',
-            listening: 'E'
+            listening: 'E',
         },
     },
     {
         id: '10',
         studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Elmer Andy', 
         lastName: 'Garfield Manny', 
         nickname: '', 
@@ -210,8 +210,8 @@ const students = [
     {
         id: '11',
         studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Tirakanal', 
         lastName: 'Sinkarana', 
         nickname: 'Jewel', 
@@ -228,8 +228,8 @@ const students = [
     {
         id: '12',
         studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Card Napolian', 
         lastName: 'Pinstripe Zulu', 
         nickname: '', 
@@ -240,14 +240,14 @@ const students = [
             reading: 'C',
             writing: 'C',
             speaking: 'D',
-            listening: 'E'
+            listening: 'E',
         },
     },
     {
         id: '13',
         studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Elmer Andy', 
         lastName: 'Garfield Manny', 
         nickname: '', 
@@ -264,8 +264,8 @@ const students = [
     {
         id: '14',
         studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Tirakanal', 
         lastName: 'Sinkarana', 
         nickname: 'Jewel', 
@@ -282,8 +282,8 @@ const students = [
     {
         id: '15',
         studentId: '25602',
-        startDate: '28/5/24',
-        endDate: '3/8/24',  
+        startDate: '05/08/24',
+        endDate: '11/10/24', 
         firstName: 'Card Napolian', 
         lastName: 'Pinstripe Zulu', 
         nickname: '', 
@@ -294,43 +294,7 @@ const students = [
             reading: 'C',
             writing: 'C',
             speaking: 'D',
-            listening: 'E'
-        },
-    },
-    {
-        id: '16',
-        studentId: '25675', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
-        firstName: 'Elmer Andy', 
-        lastName: 'Garfield Manny', 
-        nickname: '', 
-        participation: 'S', 
-        leavers: 'N/A', 
-        teacherComments: '',
-        overallGrades: {
-            reading: 'A',
-            writing: 'C',
-            speaking: 'C',
-            listening: 'C'
-        },
-    },
-    {
-        id: '17',
-        studentId: '26325', 
-        startDate: '28/5/24',
-        endDate: '3/8/24', 
-        firstName: 'Tirakanal', 
-        lastName: 'Sinkarana', 
-        nickname: 'Jewel', 
-        participation: 'S', 
-        leavers: 'N/A', 
-        teacherComments: '',
-        overallGrades: {
-            reading: 'C',
-            writing: 'C',
-            speaking: 'C',
-            listening: 'E'
+            listening: 'E',
         },
     },
 ]
@@ -442,7 +406,7 @@ const courseResults = {
     ]
 }
 
-
+/* ======results structuring====== */
 const listeningResults = [
     {
         id: 'L1',
@@ -833,13 +797,76 @@ const testResults = {
     },
 };
 
-
-
 const results = {
     grammarVocabularyResults,
     listeningResults,
     readingResults,
     writeSpeakPronResults,
 };
+/* ============ */
 
-export { courseMetaData, students, courseResults, results, testResults}
+const studentResults = [
+    {
+        id: '0',
+        studentId: '25602',
+        firstName: 'Card Napolian', 
+        lastName: 'Pinstripe Zulu', 
+        nickname: '', 
+        overallGrades: {
+            reading: 'C',
+            writing: 'C',
+            speaking: 'D',
+            listening: 'E',
+        },
+        grammar: ['56', '81', '25'],
+        vocabulary: ['63', '81', '88'],
+        listening: ['15', 'NA', '25'],
+        reading: ['NA', '50', 'NA'],
+        writing: ['C', 'C', 'B'],
+        speaking: ['D', 'C', 'C'],
+        pronunciation: ['B', 'C', 'B'],
+    },
+    {
+        id: '1',
+        studentId: '25675', 
+        firstName: 'Elmer Andy', 
+        lastName: 'Garfield Manny', 
+        nickname: '', 
+        overallGrades: {
+            reading: 'A',
+            writing: 'C',
+            speaking: 'C',
+            listening: 'C'
+        },
+        grammar: ['Abs', '81', '94'],
+        vocabulary: ['Abs', '94', '94'],
+        listening: ['54', 'NA', '33'],
+        reading: ['NA', '80', 'NA'],
+        writing: ['C', 'B', 'C'],
+        speaking: ['C', 'B', 'B'],
+        pronunciation: ['B', 'B', 'B'],  
+    },
+    {
+        id: '2',
+        studentId: '26325', 
+        firstName: 'Tirakanal', 
+        lastName: 'Sinkarana', 
+        nickname: 'Jewel', 
+        overallGrades: {
+            reading: 'C',
+            writing: 'C',
+            speaking: 'C',
+            listening: 'E'
+        },
+        grammar: ['56', '56', '69'],
+        vocabulary: ['63', '69', '94'],
+        listening: ['31', 'NA', '17'],
+        reading: ['NA', '50', 'NA'],
+        writing: ['C', 'B', 'C'],
+        speaking: ['C', 'C', 'B'],
+        pronunciation: ['D', 'D', 'D'],
+    },
+];
+
+
+export { courseMetaData, students, courseResults, results, studentResults}

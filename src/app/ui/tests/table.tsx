@@ -1,88 +1,48 @@
-import { TestResult } from "@/app/lib/definitions";
+import { StudentResults } from "@/app/lib/definitions";
 
 export function Table({ 
-    activeTest,
+    activeWeek,
+    studentResults,
 } : {
-    activeTest: TestResult;
+    activeWeek: number,
+    studentResults: StudentResults[];
     }
 ) {
-    if (typeof activeTest === 'undefined') {
+    if (typeof studentResults === 'undefined') {
         return;
     }
 
-    const {
-        week, 
-        skill,
-        date,
-        totalQuestions,
-        results,
-    } = activeTest;
-
-
-    let baseHeaders = [
-        { 
-            label: 'Week', 
-            value: week,
-        },
-        { 
-            label: 'Skill', 
-            value: skill,
-        },
-        { 
-            label: 'Date', 
-            value: date || '-',
-        },
-        { 
-            label: 'Total Questions', 
-            value: totalQuestions || '-',
-        } 
-    ];    
-
-    const baseColumns = [''];
-
-
     return (
         <div className="bg-white text-black">
-            {baseHeaders.map((header, index) => {
-                return (
-                    <div key={index}>
-                         <h3>{header.label}: {header.value}</h3>
-                    </div>
-                )
-            })}
 
             <table className="bg-white text-black table-auto border-collapse w-full text-sm">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Part 4</th>
-                <th>Part 5</th>
-                <th>Total</th>
-                <th>Abs</th>
+                <th>Grammar</th>
+                <th>Vocabulary</th>
+                <th>Listening</th>
+                <th>Reading</th>
+                <th>Writing</th>
+                <th>Speaking</th>
+                <th>Pronunciation</th>
             </tr>
 
         </thead>
         <tbody>
-            {results.map((test, index) => (
+            
+            {studentResults.map((student, index) => (
                 <tr key={index}>
-                    <td>{test.studentId}</td>
-                    <td>{test.firstName}</td>
-                    {test.absent ? (
-                        <>
-                            <td colSpan={4}></td>
-                            <td>✔</td>
-                        </>
-                    ) : (
-                        <>
-                            {/* <td>{result.partTwo}</td>
-                            <td>{result.partThree}</td> */}
-                            <td>{test.partFour}</td>
-                            <td>{test.partFive}</td>
-                            <td>{test.partFour + test.partFive}</td>
-                        </>
-                    )}
-                    
+                    <td>{student.studentId}</td>
+                    <td>{student.firstName}</td>
+                    <td>{student.grammar[activeWeek - 1]}</td>
+                    <td>{student.vocabulary[activeWeek - 1]}</td>
+                    <td>{student.listening[activeWeek - 1]}</td>
+                    <td>{student.reading[activeWeek - 1]}</td>
+                    <td>{student.writing[activeWeek - 1]}</td>
+                    <td>{student.speaking[activeWeek - 1]}</td>
+                    <td>{student.pronunciation[activeWeek - 1]}</td>
                 </tr>
             ))}
         </tbody>

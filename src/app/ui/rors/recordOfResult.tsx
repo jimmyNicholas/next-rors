@@ -1,5 +1,5 @@
 import React from "react";
-import { CourseMetaData, StudentResult } from "@/app/lib/definitions";
+import { CourseMetaData, StudentResults } from "@/app/lib/definitions";
 import Row from "../utility/Row";
 
 export default function RecordOfResults({
@@ -7,18 +7,13 @@ export default function RecordOfResults({
     studentResult,
 }: {
     courseMetaData: CourseMetaData;
-    studentResult: StudentResult;
+    studentResult: StudentResults;
 }) {
     const {
         course, 
         className,
         teachers,
     } = courseMetaData;
-
-    const {
-        student, 
-        results,
-    } = studentResult;
 
     const {
         studentId,
@@ -31,9 +26,6 @@ export default function RecordOfResults({
         leavers,
         teacherComments,
         overallGrades,
-    } = student;
-
-    const {
         grammar,
         vocabulary,
         listening,
@@ -41,11 +33,12 @@ export default function RecordOfResults({
         writing,
         speaking,
         pronunciation,
-    } 
-    = results
+    } = studentResult;
+
+    const fullName = nickname ? `${firstName} ${lastName} (${nickname})`: `${firstName} ${lastName}`;
 
     const metaDataInfo = [
-        {title: 'Student', value:`${firstName} ${lastName}`},
+        {title: 'Student', value: fullName},
         {title: 'Student ID', value: studentId},
         {title: 'Course', value: course},
         {title: 'Class', value: className},

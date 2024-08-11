@@ -16,6 +16,8 @@ export default function Page () {
         async function fetchData() {
             try {
                 const courseResults: CourseResults = await fetchCourseResults();
+                console.log(courseResults);
+                
                 setCourseResults(courseResults);
             } catch (error) {
                 console.error('Student Fetch Error', error);
@@ -30,8 +32,8 @@ export default function Page () {
 
     const studentTabsText = courseResults?.studentResults?.map((studentResult)=> {
         return {
-            studentId: studentResult.student.studentId,
-            firstName: studentResult.student.firstName,
+            studentId: studentResult.studentId,
+            firstName: studentResult.firstName,
         }
     });    
 

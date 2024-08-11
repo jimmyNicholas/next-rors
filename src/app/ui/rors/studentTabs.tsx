@@ -45,7 +45,7 @@ export function StudentTab({
             onClick={() => setActiveIndex(index)}
             className={clsx("rounded-lg bg-gray-50 p-1 shadow-sm text-black hover:bg-sky-100 hover:text-blue-600 hover:cursor-pointer",
                 {
-                    "bg-sky-100 text-blue-600": isActive,
+                    "bg-sky-200 text-blue-600": isActive,
                 },
             )}
             >

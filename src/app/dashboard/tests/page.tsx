@@ -3,23 +3,22 @@
 import { useState, useEffect } from "react";
 
 import { fetchResults } from "@/app/lib/data";
-import { TestResults } from "@/app/lib/definitions";
-import TestInterface from "@/app/ui/tests/testsInterface";
+import { StudentResults } from "@/app/lib/definitions";
+import { WeekTabs } from "@/app/ui/tests/weekTabs";
+
 import { Table } from "@/app/ui/tests/table";
-import GrammarVocabularyTable from "../../ui/tests/grammarVocabularyTable";
-import ReadingListeningTable from "../../ui/tests/readingListeningTable";
-import WriteSpeakPronTable from "../../ui/tests/writeSpeakPronTable";
 
 export default function Page () {
-    const [testResults, setTestResults] = useState<TestResults | undefined>(undefined);
+    const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [activeTest, setActiveTest] = useState('G1');
+    const [activeWeek, setActiveWeek] = useState(1);
 
     useEffect(() => {
         async function fetchTestResults() {
             try {
-                const testResults: TestResults = await fetchResults();
-                setTestResults(testResults)
+                const studentResults: StudentResults[] = await fetchResults();
+                setStudentResults(studentResults)
             } catch (error) {
                 console.error('Results Fetch Error', error);
             } finally {
@@ -31,35 +30,13 @@ export default function Page () {
 
     if (loading) return <p>Loading...</p>;
 
-    console.log(testResults[activeTest]);
-    
-
     return (
         <div className="grid gap-5">
             <p>Tests Page</p>
-            <TestInterface setActiveTest={setActiveTest}/>
-            <Table activeTest={testResults[activeTest]}/>
-
-            {/* {!loading && testResults ? (
-                <GrammarVocabularyTable grammarVocabularyResults={testResults.grammarVocabularyResults}/>
-            ) : null} */}
-
-            {/* {!loading && testResults ? (
-                <GrammarVocabularyTable grammarVocabularyResults={testResults.grammarVocabularyResults}/>
-            ) : null}
-            
-            {!loading && testResults ? (
-                <ReadingListeningTable 
-                    readingResults={testResults.readingResults} 
-                    listeningResults={testResults.listeningResults}
-                />
-            ) : null}
-
-            {!loading && testResults ? (
-                <WriteSpeakPronTable
-                    writeSpeakPronResults={testResults.writeSpeakPronResults} 
-                />
-            ) : null} */}
+            <WeekTabs activeWeek={activeWeek} setActiveWeek={setActiveWeek}/>
+            {!loading && studentResults ? (
+                <Table activeWeek={activeWeek} studentResults={studentResults}/>
+            ): null}
         </div>
     )
 }

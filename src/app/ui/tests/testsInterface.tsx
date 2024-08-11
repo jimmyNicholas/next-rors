@@ -7,7 +7,6 @@ export default function TestInterface({
 }) {
     
     function onClick(testLabel: string) {
-        console.log(testLabel);
         setActiveTest(testLabel);
     }
 
@@ -19,8 +18,7 @@ export default function TestInterface({
                 <Row title='Week' array={[...Array(10)].map((x, i) => i + 1)} style={'font-bold text-center bg-slate-300'}/>    
                 {skills.map((skill) => {
                     return <Row key={skill} title={skill} array={[...Array(10)]} style={'px-1 bg-white'} onClick={onClick}/>
-                })}
-                
+                })}           
             </div>
         </>
     );
