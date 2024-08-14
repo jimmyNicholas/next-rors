@@ -1,17 +1,20 @@
 import { inter } from '@/app/ui/fonts';
-import { fetchStudents } from '@/app/lib/data';
+import { StudentResults } from '@/app/lib/definitions';
 
-export default async function StudentsTable() {
-    const students = await fetchStudents();        
+export default function StudentsTable({
+    studentResults,
+    }: {
+        studentResults: StudentResults[];
+    }) {
 
     const headerStyle = "px-2 py-4 font-medium";
     const bodyStyle = "whitespace-nowrap bg-white px-3 py-3 text-sm";
 
     return ( 
         <div className='w-full'>
-            <h1 className={`${inter.className} mb-8 text-xl md:text-2xl text-center`}>
-                Students
-            </h1>
+            <div className={`${inter.className} mb-8 text-xl md:text-2xl text-center`}>
+            
+            </div>
             <table className="min-w-full rounded-md text-gray-900 md:table">
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                         <tr>
@@ -54,7 +57,7 @@ export default async function StudentsTable() {
                     </thead>
 
                     <tbody className="divide-y divide-gray-200 text-gray-900">
-                        {students.map((student) => (
+                        {studentResults.map((student) => (
                             <tr key={student.id} className="group">
                                 <td className={`${bodyStyle}`}>
                                     {student.studentId}
