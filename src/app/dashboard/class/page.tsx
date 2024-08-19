@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 
 import { inter } from '@/app/ui/fonts';
-import { fetchResults, fetchCourseResults, fetchCourseMetaData } from "@/app/lib/data";
-import { CourseResults } from '@/app/lib/definitions';
+import { fetchCourseResults } from "@/app/lib/data";
+import { CourseMetaData, StudentResults } from '@/app/lib/definitions';
 
 import ClassMetaData from '@/app/ui/class/classMetaData';
 import StudentsTable from '@/app/ui/class/studentTable';
@@ -12,15 +12,19 @@ import AddStudent from "@/app/ui/class/addStudent";
 
 
 export default function Page() {
-    const [courseResults, setCourseResults] = useState<CourseResults | undefined>(undefined);
+    const [courseMetaData, setCourseMetaData] = useState<CourseMetaData | undefined>(undefined);
+    const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>(undefined);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const courseResults = await fetchCourseResults('Foundation 1');
-                setCourseResults(courseResults);
-
+                if (courseResults) {
+                    const { courseMetaData, studentResults} = courseResults;
+                    setCourseMetaData(courseMetaData);
+                    setStudentResults(studentResults);
+                }
             } catch (error) {
                 console.error('Course Meta Data Fetch Error', error);
             } finally {
@@ -28,9 +32,13 @@ export default function Page() {
             }
         }
         fetchData();
-    }, [])
+    }, [loading]);
 
     if (loading) return <p>Loading...</p>;
+
+    const refreshData = () => {
+        setLoading(prev => !prev);
+    };
 
     return (
         <main>
@@ -38,18 +46,24 @@ export default function Page() {
                 Class
             </h1>
             <div className='flex flex-row gap-2 justify-center'>
-                {!loading && courseResults ? (
-                    <ClassMetaData courseMetaData={courseResults.courseMetaData}/>
+                {!loading && courseMetaData ? (
+                    <ClassMetaData courseMetaData={courseMetaData}/>
                 ) : null}
             </div>
             <div>
-                {!loading && courseResults ? (
-                    <StudentsTable studentResults={courseResults.studentResults}/>
+                {!loading && studentResults ? (
+                    <StudentsTable 
+                        studentResults={studentResults}
+                        refreshData={refreshData}
+                    />
                 ) : null}
             </div>
             <div className="grid grid-flow-col p-4">
-                {!loading && courseResults ? (
-                    <AddStudent courseMetaDataId={courseResults.courseMetaData.id}/>
+                {!loading && courseMetaData ? (
+                    <AddStudent 
+                        courseMetaDataId={courseMetaData.id}
+                        refreshData={refreshData}
+                    />
                 ) : null}
             </div>
         </main>

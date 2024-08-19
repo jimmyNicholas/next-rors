@@ -1,11 +1,14 @@
 import { inter } from '@/app/ui/fonts';
 import { StudentResults } from '@/app/lib/definitions';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 export default function StudentsTable({
     studentResults,
+    refreshData,
     }: {
         studentResults: StudentResults[];
+        refreshData: () => void;
     }) {
 
     const headerStyle = "px-2 py-4 font-medium";
@@ -97,7 +100,24 @@ export default function StudentsTable({
                                     {student.teacherComments}
                                 </td>
                                 <td className={`${bodyStyle}`}>
-                                    <TrashIcon/>
+                                    <TrashIcon onClick={ async (e)=> {
+                                            e.preventDefault();
+                                   
+                                            try {
+                                                const response = await fetch(`/api/student/delete?id=${student.id}`, {
+                                                    method: 'GET',
+                                                });
+                                                if (response) {
+                                                    console.log('Student deleted successfully!');
+                                                    
+                                                }                     
+                                            } catch (error) {
+                                                console.error(error, 'Failed to delete student.');
+                                            } finally {
+                                                refreshData();
+                                            }   
+                                        }
+                                    }/>
                                 </td>
                             </tr>
                         ))}

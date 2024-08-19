@@ -63,7 +63,6 @@ export async function fetchCourseResults(className: string) {
         if (!courseMetaData) {
             throw new Error('Failed to get course meta data');
         }
-        console.log(courseMetaData);
         
         const course_meta_data_id = courseMetaData.id;
         
@@ -72,8 +71,7 @@ export async function fetchCourseResults(className: string) {
             throw new Error('Failed to get results data');
         }
         
-        const courseResults = {courseMetaData, studentResults};
-        return courseResults;
+        return {courseMetaData, studentResults};
 
     } catch (error) {
         console.error(error, 'Failed to get course results');

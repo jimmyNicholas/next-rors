@@ -1,8 +1,10 @@
 export default function AddStudent({
     courseMetaDataId,
-}: {
-    courseMetaDataId: number;
-}) {
+    refreshData,
+    }: {
+        courseMetaDataId: number;
+        refreshData: () => void;
+    }) {
 
     const elements = [
         {
@@ -49,11 +51,13 @@ export default function AddStudent({
                         if (!response.ok) {
                             throw new Error('Failed to submit form');
                         }
-                        console.log('Student added successfully!');
-                        form.reset();
+                        console.log('Student added successfully!');  
                     } catch (error) {
                         console.error(error, 'Failed to add student.');
-                    }   
+                    } finally {
+                        form.reset();
+                        refreshData();
+                    }  
                 }}
             >
                 <h2
