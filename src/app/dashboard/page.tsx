@@ -1,6 +1,6 @@
 import { inter } from '@/app/ui/fonts';
 import ClassMetaDataWrapper from '@/app/ui/class/classMetaData';
-import StudentsTable from '@/app/ui/dashboard/studentTable';
+import StudentsTable from '@/app/ui/class/studentTable';
 
 export default function Page() {
     return (
@@ -9,10 +9,10 @@ export default function Page() {
                 Dashboard
             </h1>
             <div className='flex gap-2 grow justify-center'>
-                <ClassMetaDataWrapper />
+                {/* <ClassMetaDataWrapper /> */}
             </div>
             <div>
-                <StudentsTable />
+                {/* <StudentsTable /> */}
             </div>
         </main>
     )

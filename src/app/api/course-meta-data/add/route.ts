@@ -7,6 +7,8 @@ export async function GET(request: Request) {
     const className = searchParams.get('className');
     const teacherOne = searchParams.get('teacherOne');
     const teacherTwo = searchParams.get('teacherTwo');
+    console.log(className);
+    
 
     try {
         if( 
@@ -15,6 +17,7 @@ export async function GET(request: Request) {
             !teacherOne || 
             !teacherTwo
         ) throw new Error('course, class name and teachers required');
+        return;
         await sql`INSERT INTO course_meta_data(
                     course,
                     class_name,

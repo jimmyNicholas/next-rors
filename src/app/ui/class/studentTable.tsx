@@ -1,5 +1,6 @@
 import { inter } from '@/app/ui/fonts';
 import { StudentResults } from '@/app/lib/definitions';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 export default function StudentsTable({
     studentResults,
@@ -53,6 +54,9 @@ export default function StudentsTable({
                             <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>
                                 Teacher Comments
                             </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                DEL
+                            </th>
                         </tr>
                     </thead>
 
@@ -91,6 +95,9 @@ export default function StudentsTable({
                                 </td>
                                 <td className={`${bodyStyle} hidden xl:table-cell`}>
                                     {student.teacherComments}
+                                </td>
+                                <td className={`${bodyStyle}`}>
+                                    <TrashIcon/>
                                 </td>
                             </tr>
                         ))}

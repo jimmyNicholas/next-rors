@@ -9,7 +9,6 @@ export function WeekTabs({
     activeWeek: number;
     setActiveWeek: Function;
 }) {
-    console.log(activeWeek);
 
     return (
         <div className="grid grid-flow-col bg-white text-black text-center">

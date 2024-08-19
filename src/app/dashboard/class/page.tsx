@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 
 import { inter } from '@/app/ui/fonts';
-import { fetchCourseResults } from "@/app/lib/data";
+import { fetchResults, fetchCourseResults, fetchCourseMetaData } from "@/app/lib/data";
 import { CourseResults } from '@/app/lib/definitions';
 
 import ClassMetaData from '@/app/ui/class/classMetaData';
-import StudentsTable from '@/app/ui/dashboard/studentTable';
+import StudentsTable from '@/app/ui/class/studentTable';
 import AddStudent from "@/app/ui/class/addStudent";
 
 
@@ -18,10 +18,9 @@ export default function Page() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const courseResults = await fetchCourseResults();
-                console.log(courseResults.studentResults);
-                
+                const courseResults = await fetchCourseResults('Foundation 1');
                 setCourseResults(courseResults);
+
             } catch (error) {
                 console.error('Course Meta Data Fetch Error', error);
             } finally {
@@ -49,7 +48,9 @@ export default function Page() {
                 ) : null}
             </div>
             <div className="grid grid-flow-col p-4">
-                <AddStudent />
+                {!loading && courseResults ? (
+                    <AddStudent courseMetaDataId={courseResults.courseMetaData.id}/>
+                ) : null}
             </div>
         </main>
     )

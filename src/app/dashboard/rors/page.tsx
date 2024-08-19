@@ -15,7 +15,7 @@ export default function Page () {
     useEffect(() => {
         async function fetchData() {
             try {
-                const courseResults: CourseResults = await fetchCourseResults();
+                const courseResults = await fetchCourseResults('Foundation 1');
                 console.log(courseResults);
                 
                 setCourseResults(courseResults);

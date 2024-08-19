@@ -1,53 +1,93 @@
-export default function AddStudent() {
+export default function AddStudent({
+    courseMetaDataId,
+}: {
+    courseMetaDataId: number;
+}) {
 
     const elements = [
         {
-            label: 'ID:',
-            name: 'studentId'
+            label: 'ID',
+            name: 'studentId',
+            type: 'text'
         },
         {
-            label: 'First Name:',
-            name: 'firstName'
+            label: 'Start Date',
+            name: 'startDate',
+            type: 'date'
         },
         {
-            label: 'Last Name:',
-            name: 'lastName'
+            label: 'First Name',
+            name: 'firstName',
+            type: 'text'
         },
         {
-            label: 'Nickname: ',
-            name: 'nickname'
+            label: 'Last Name',
+            name: 'lastName',
+            type: 'text'
         },
     ];
 
     return (
         <>
-            <form className="grid grid-flow-row grid-cols-4 bg-white">
-                <button 
-                    type="submit"
-                    className="bg-green-300 text-black col-span-4"
+            <form 
+                className="grid grid-flow-row grid-cols-4"
+                method="get"
+                onSubmit={async (e) => {
+                    e.preventDefault();
+
+                    const form = e.target as HTMLFormElement;
+                    const formData = new FormData(form);
+
+                    const queryParams = new URLSearchParams(formData as any).toString();
+                    const nonFormQueryParams = `courseMetaDataId=${encodeURIComponent(courseMetaDataId)}`;
+
+                    try {
+                        const response = await fetch(`/api/student/add?${queryParams}&${nonFormQueryParams}`, {
+                            method: 'GET',
+                        });
+            
+                        if (!response.ok) {
+                            throw new Error('Failed to submit form');
+                        }
+                        console.log('Student added successfully!');
+                        form.reset();
+                    } catch (error) {
+                        console.error(error, 'Failed to add student.');
+                    }   
+                }}
+            >
+                <h2
+                    className="bg-neutral-300 text-black col-span-4 text-center p-1"
                 >
-                    Add New Student
-                </button>
+                    New Student
+                </h2>
 
                 {elements.map((ele) => {
                     return (
                         <div 
                             key={ele.name}
-                            className="grid grid-cols-subgrid col-span-2"
+                            className="grid grid-cols-subgrid col-span-2 text-black bg-white"
                         >
                             <label
-                                className="text-black pl-2"
+                                className="pl-2"
                             >
-                            {ele.label} 
+                            {ele.label}:
                             </label>
                             <input 
-                                type="text" 
+                                type={ele.type}
                                 name={ele.name} 
                                 className="border border-black"
                             />
                         </div>
                     );
                 })}
+
+                <button 
+                    type="submit"
+                    className="bg-green-300 text-black col-span-4 p-1 rounded-lg my-1"
+                >
+                    Add
+                </button>
             </form>
         </>
     )

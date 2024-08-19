@@ -46,6 +46,9 @@ export default function RecordOfResults({
         {title: 'Finish Date', value: endDate},
     ];
 
+    console.log(startDate);
+    
+
     return(  
         <div className="bg-white my-3 text-black p-2 min-w-full rounded-lg">    
             <h1 className="font-bold text-2xl text-center py-1">Record Of Results</h1>
