@@ -29,7 +29,7 @@ export async function fetchStudents() {
     return students;
 }
 
-export async function fetchResults(courseMetaDataId: number): Promise<StudentResults | undefined> {
+export async function fetchResults(courseMetaDataId: number): Promise<StudentResults[] | undefined> {
     const queryParams = `courseMetaDataId=${encodeURIComponent(courseMetaDataId)}`;
     
     try {
@@ -67,12 +67,13 @@ export async function fetchCourseResults(className: string) {
         
         const course_meta_data_id = courseMetaData.id;
         
-        const studentResults: StudentResults | undefined = await fetchResults(course_meta_data_id);
+        const studentResults: StudentResults[] | undefined = await fetchResults(course_meta_data_id);
         if (!studentResults) {
             throw new Error('Failed to get results data');
         }
         
-        return {courseMetaData, studentResults};
+        const courseResults = {courseMetaData, studentResults};
+        return courseResults;
 
     } catch (error) {
         console.error(error, 'Failed to get course results');
