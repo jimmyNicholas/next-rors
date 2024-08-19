@@ -17,8 +17,8 @@ export default function Page () {
     useEffect(() => {
         async function fetchTestResults() {
             try {
-                const studentResults: StudentResults[] = await fetchResults();
-                setStudentResults(studentResults)
+                //const studentResults: StudentResults[] = await fetchResults();
+                //setStudentResults(studentResults)
             } catch (error) {
                 console.error('Results Fetch Error', error);
             } finally {
