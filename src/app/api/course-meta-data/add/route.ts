@@ -17,7 +17,6 @@ export async function GET(request: Request) {
             !teacherOne || 
             !teacherTwo
         ) throw new Error('course, class name and teachers required');
-        return;
         await sql`INSERT INTO course_meta_data(
                     course,
                     class_name,
