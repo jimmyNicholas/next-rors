@@ -11,14 +11,13 @@ import { Table } from "@/app/ui/tests/table";
 export default function Page () {
     const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-    const [activeTest, setActiveTest] = useState('G1');
     const [activeWeek, setActiveWeek] = useState(1);
 
     useEffect(() => {
         async function fetchTestResults() {
             try {
-                //const studentResults: StudentResults[] = await fetchResults();
-                //setStudentResults(studentResults)
+                const studentResults = await fetchResults(1);
+                setStudentResults(studentResults)
             } catch (error) {
                 console.error('Results Fetch Error', error);
             } finally {
