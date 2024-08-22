@@ -1,6 +1,5 @@
 import ImpactLogo from "./ui/impact-logo";
-import { auth } from "@clerk/nextjs/server";
-import { SignIn } from "@clerk/nextjs";
+//import { auth } from "@clerk/nextjs/server";
 
 export default function Home() {
 
