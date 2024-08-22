@@ -1,5 +1,4 @@
 import ImpactLogo from "./ui/impact-logo";
-//import { auth } from "@clerk/nextjs/server";
 
 export default function Home() {
 
