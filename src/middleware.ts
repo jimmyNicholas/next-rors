@@ -1,14 +1,14 @@
 
 /*AT THIS STAGE VERCEL DOES NOT SUPPORT CLERK AUTH WITHOUT A PRO ACCOUNT*/
 
-
+/*
 import { clerkMiddleware, createRouteMatcher  } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)'])
 
 export default clerkMiddleware((auth, request) => {
-  /*
+  
     if (!isPublicRoute(request)) {
       auth().protect();
     }
@@ -26,7 +26,7 @@ export default clerkMiddleware((auth, request) => {
         )
       })
     }
-  */
+  
 });
 
 export const config = {
@@ -37,3 +37,4 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+*/
