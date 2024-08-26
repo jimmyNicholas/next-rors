@@ -13,7 +13,7 @@ import AddStudent from "@/app/ui/class/addStudent";
 
 export default function Page() {
     const [courseMetaData, setCourseMetaData] = useState<CourseMetaData | undefined>(undefined);
-    const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>(undefined);
+    const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -40,6 +40,19 @@ export default function Page() {
         setLoading(prev => !prev);
     };
 
+    function onUpdateStudent(updatedStudent: StudentResults) {
+        const updatedStudents = studentResults?.map(
+            student => {
+                if (student.id === updatedStudent.id) {
+                    return updatedStudent;
+                } else {
+                    return student;
+                }
+            }
+        )
+        setStudentResults(updatedStudents);
+    }
+
     return (
         <main>
             <h1 className={`${inter.className} mb-4 text-xl md:text-2x1`}>
@@ -55,6 +68,7 @@ export default function Page() {
                     <StudentsTable 
                         studentResults={studentResults}
                         refreshData={refreshData}
+                        onUpdateStudent={onUpdateStudent}
                     />
                 ) : null}
             </div>

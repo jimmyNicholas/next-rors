@@ -1,20 +1,153 @@
 import { inter } from '@/app/ui/fonts';
 import { StudentResults } from '@/app/lib/definitions';
-import { TrashIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
+import Student from './student';
+import EditStudent from './editStudent';
 
 export default function StudentsTable({
-    studentResults,
-    refreshData,
-    }: {
-        studentResults: StudentResults[];
-        refreshData: () => void;
-    }) {
+        studentResults,
+        refreshData,
+        onUpdateStudent,
+        }: {
+            studentResults: StudentResults[];
+            refreshData: () => void;
+            onUpdateStudent: (updatedStudent: StudentResults) => void;
+        }) {
+    
+    const [isEditing, setIsEditing] = useState(false);
+    const [editForm, setEditForm] = useState<StudentResults>({
+        id: "",
+        studentId: "",
+        firstName: "",
+        lastName: "",
+        nickname: "",
+        startDate: "", 
+        endDate: "", 
+        overallGrades: {
+            reading: "", 
+            writing: "", 
+            listening: "", 
+            speaking: "",
+        }, 
+        grammar: [], 
+        vocabulary: [], 
+        listening: [], 
+        reading: [],  
+        writing: [], 
+        speaking: [],  
+        pronunciation: [], 
+    });
+
+    function handleStudentUpdate(updatedStudent: StudentResults) {
+        setIsEditing(false);
+        onUpdateStudent(updatedStudent);
+    }
+
+    function handleChange(e: React.FormEvent<HTMLInputElement>) {
+        setEditForm({
+            ...editForm,
+            [e.currentTarget.name]: e.currentTarget.value
+        })
+    }
+
+    function changeEditState(student: StudentResults) {
+        if(student.id === editForm.id) {
+            setIsEditing(isEditing => !isEditing)
+        } else if (isEditing === false) {
+            setIsEditing(isEditing => !isEditing)
+        }
+    }
+
+    function captureEdit(clickedStudent: any) {
+        let filtered: StudentResults[] = studentResults.filter(student => student.id === clickedStudent.id)
+        setEditForm(filtered[0])
+    }
 
     const headerStyle = "px-2 py-4 font-medium";
     const bodyStyle = "whitespace-nowrap bg-white px-3 py-3 text-sm";
 
     return ( 
+        <div>
+            {/* {isEditing?
+                (<EditStudent
+                    editForm={editForm}
+                    handleChange={handleChange}
+                    handleStudentUpdate={handleStudentUpdate}
+                    />) : null   
+            } */}
+            <table className="min-w-full rounded-md text-gray-900 md:table">
+                <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
+                        <tr>
+                            <th scope="col" className={`${headerStyle}`}>
+                                ID
+                            </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                First Name
+                            </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                Last Name
+                            </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                Nickname
+                            </th>
+                            
+                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
+                                Reading
+                            </th>
+                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
+                                Writing
+                            </th>
+                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
+                                Speaking
+                            </th>
+                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
+                                Listening
+                            </th>
+                            
+                            <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>
+                                Participation
+                            </th>
+                            <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>
+                                Leavers
+                            </th>
+                            <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>
+                                Teacher Comments
+                            </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                EDIT
+                            </th>
+                            <th scope="col" className={`${headerStyle}`}>
+                                DEL
+                            </th>
+                        </tr>
+                    </thead>
+ 
+                    <tbody>
+                        {isEditing?
+                            (<EditStudent
+                                editForm={editForm}
+                                handleChange={handleChange}
+                                handleStudentUpdate={handleStudentUpdate}
+                                style={bodyStyle}
+                                />) : null   
+                        }
+                        { studentResults.map(student => (
+                            <Student 
+                                key={student.id}
+                                student={student}
+                                captureEdit={captureEdit}
+                                changeEditState={changeEditState}
+                                style={bodyStyle}
+                                refreshData={refreshData}
+                            />
+                        ))}
+                    </tbody>
+            </table>
+        </div>
+    );
+}
+
+/*
         <div className='w-full'>
             <div className={`${inter.className} mb-8 text-xl md:text-2xl text-center`}>
             
@@ -124,7 +257,5 @@ export default function StudentsTable({
                 </tbody>
             </table>
         </div>
-
-    );
-}
+        */
 

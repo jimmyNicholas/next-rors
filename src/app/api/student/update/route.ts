@@ -3,22 +3,30 @@ import { NextResponse } from 'next/server';
 
 export async function GET( request: Request) {
   const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
   const studentId = searchParams.get('studentId');
-  const startDate = searchParams.get('startDate');
   const firstName = searchParams.get('firstName');
   const lastName = searchParams.get('lastName');
-  const courseMetaDataId = searchParams.get('courseMetaDataId');
+  //const nickname = searchParams.get('nickname');
+  //    nickname = ${nickname}
 
   try {
     if (!studentId || !firstName || !lastName) throw new Error('Id and names required');
-    await sql`INSERT INTO student_results 
-                (student_id, start_date, first_name, last_name, course_meta_data_id)
-                VALUES (${studentId}, ${startDate}, ${firstName}, ${lastName}, ${courseMetaDataId});  
-              `;
+    await sql`UPDATE student_results 
+                SET 
+                    student_id = ${studentId},
+                    first_name = ${firstName}, 
+                    last_name = ${lastName}
+                WHERE id = ${id};
+              `;    
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error }, { status: 500 });
   }
 
-  const student = await sql`SELECT * FROM student_results;`;
+  const student = await sql`
+    SELECT * FROM student_results
+      WHERE id = ${id};
+    `;
   return NextResponse.json({ student }, { status: 200 });
 }
