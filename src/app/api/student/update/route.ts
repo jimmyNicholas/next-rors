@@ -7,8 +7,7 @@ export async function GET( request: Request) {
   const studentId = searchParams.get('studentId');
   const firstName = searchParams.get('firstName');
   const lastName = searchParams.get('lastName');
-  //const nickname = searchParams.get('nickname');
-  //    nickname = ${nickname}
+  const nickname = searchParams.get('nickname');
 
   try {
     if (!studentId || !firstName || !lastName) throw new Error('Id and names required');
@@ -16,7 +15,8 @@ export async function GET( request: Request) {
                 SET 
                     student_id = ${studentId},
                     first_name = ${firstName}, 
-                    last_name = ${lastName}
+                    last_name = ${lastName},
+                    nickname = ${nickname}
                 WHERE id = ${id};
               `;    
   } catch (error) {

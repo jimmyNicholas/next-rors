@@ -47,7 +47,9 @@ export default function StudentsTable({
         setEditForm({
             ...editForm,
             [e.currentTarget.name]: e.currentTarget.value
-        })
+        });
+        console.log([e.currentTarget.name], e.currentTarget.value);
+        
     }
 
     function changeEditState(student: StudentResults) {
@@ -68,13 +70,6 @@ export default function StudentsTable({
 
     return ( 
         <div>
-            {/* {isEditing?
-                (<EditStudent
-                    editForm={editForm}
-                    handleChange={handleChange}
-                    handleStudentUpdate={handleStudentUpdate}
-                    />) : null   
-            } */}
             <table className="min-w-full rounded-md text-gray-900 md:table">
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                         <tr>
@@ -91,17 +86,17 @@ export default function StudentsTable({
                                 Nickname
                             </th>
                             
-                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
-                                Reading
+                            <th scope="col" className={`${headerStyle} hidden md:table-cell`}>
+                                R
                             </th>
-                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
-                                Writing
+                            <th scope="col" className={`${headerStyle} hidden md:table-cell`}>
+                                W
                             </th>
-                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
-                                Speaking
+                            <th scope="col" className={`${headerStyle} hidden md:table-cell`}>
+                                S
                             </th>
-                            <th scope="col" className={`${headerStyle} hidden sm:table-cell`}>
-                                Listening
+                            <th scope="col" className={`${headerStyle} hidden md:table-cell`}>
+                                L
                             </th>
                             
                             <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>

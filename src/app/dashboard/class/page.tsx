@@ -10,7 +10,6 @@ import ClassMetaData from '@/app/ui/class/classMetaData';
 import StudentsTable from '@/app/ui/class/studentTable';
 import AddStudent from "@/app/ui/class/addStudent";
 
-
 export default function Page() {
     const [courseMetaData, setCourseMetaData] = useState<CourseMetaData | undefined>(undefined);
     const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>([]);

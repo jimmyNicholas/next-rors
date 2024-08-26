@@ -29,7 +29,7 @@ export function convertStudentResults(row:any): StudentResults {
         endDate: row.end_date === null ? ' ' : formatDate(row.end_date),
         firstName: row.first_name,
         lastName: row.last_name,
-        nickname: row.nickname,
+        nickname: row.nickname === null ? ' ' : row.nickname,
         participation: row.participation,
         leavers: row.leavers,
         teacherComments: row.teacher_comments,

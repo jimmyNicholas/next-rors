@@ -1,4 +1,5 @@
 import { StudentResults } from "@/app/lib/definitions";
+import { convertStudentResults } from "@/app/lib/caseConversion";
 
 export default function EditStudent({
     editForm,
@@ -19,10 +20,11 @@ export default function EditStudent({
             await fetch(
                 `/api/student/update?id=${id}&studentId=${studentId}&firstName=${firstName}&lastName=${lastName}&nickname=${nickname}`)
                 .then(res => res.json())
-                .then(updatedStudent => {
-                    console.log(updatedStudent);
+                .then(res => {
+                    console.log(res.student.rows);
                     console.log('Student updated successfully!');
-                    //handleStudentUpdate(updatedStudent);
+                    const updatedStudent = convertStudentResults(res.student.rows[0]);
+                    handleStudentUpdate(updatedStudent);
                 })
         } catch (error) {
             console.error(error, 'Failed to update student.');
@@ -46,15 +48,6 @@ export default function EditStudent({
             <td className={`${style}`}>
                 <button type="submit" onClick={handleEditForm}>Submit Changes</button>
             </td>    
-            {/* <td colSpan={11} className={`${style} border-black`}>
-                <form onSubmit={handleEditForm}>
-                    <input type="text" name="studentId" value={studentId || ''} onChange={handleChange}/>
-                    <input type="text" name="firstName" value={firstName || ''} onChange={handleChange}/>
-                    <input type="text" name="lastName" value={lastName || ''} onChange={handleChange}/>
-                    <input type="text" name="nickname" value={nickname || ''} onChange={handleChange}/>
-                    <button type="submit">Submit Changes</button>
-                </form>
-            </td>     */}
         </tr>
     );
 }
