@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET( request: Request) {
   const { searchParams } = new URL(request.url);
+  
   const id = searchParams.get('id');
   const studentId = searchParams.get('studentId');
   const firstName = searchParams.get('firstName');
@@ -10,7 +11,7 @@ export async function GET( request: Request) {
   const nickname = searchParams.get('nickname');
 
   try {
-    if (!studentId || !firstName || !lastName) throw new Error('Id and names required');
+    if (!id) throw new Error('Id required');
     await sql`UPDATE student_results 
                 SET 
                     student_id = ${studentId},
@@ -29,4 +30,4 @@ export async function GET( request: Request) {
       WHERE id = ${id};
     `;
   return NextResponse.json({ student }, { status: 200 });
-}
+};

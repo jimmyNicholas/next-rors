@@ -38,7 +38,7 @@ export default function Page() {
     const refreshData = () => {
         setLoading(prev => !prev);
     };
-
+    
     function onUpdateStudent(updatedStudent: StudentResults) {
         const updatedStudents = studentResults?.map(
             student => {
@@ -50,8 +50,8 @@ export default function Page() {
             }
         )
         setStudentResults(updatedStudents);
-    }
-
+    };
+    
     return (
         <main>
             <h1 className={`${inter.className} mb-4 text-xl md:text-2x1`}>

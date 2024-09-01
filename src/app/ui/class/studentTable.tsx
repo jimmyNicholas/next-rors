@@ -14,64 +14,62 @@ export default function StudentsTable({
             onUpdateStudent: (updatedStudent: StudentResults) => void;
         }) {
     
-    const [isEditing, setIsEditing] = useState(false);
-    const [editForm, setEditForm] = useState<StudentResults>({
-        id: "",
-        studentId: "",
-        firstName: "",
-        lastName: "",
-        nickname: "",
-        startDate: "", 
-        endDate: "", 
-        overallGrades: {
-            reading: "", 
-            writing: "", 
-            listening: "", 
-            speaking: "",
-        }, 
-        grammar: [], 
-        vocabulary: [], 
-        listening: [], 
-        reading: [],  
-        writing: [], 
-        speaking: [],  
-        pronunciation: [], 
-    });
+    // const [isEditing, setIsEditing] = useState(false);
+    // const [editForm, setEditForm] = useState<StudentResults>({
+    //     id: "",
+    //     studentId: "",
+    //     firstName: "",
+    //     lastName: "",
+    //     nickname: "",
+    //     startDate: "", 
+    //     endDate: "", 
+    //     overallGrades: {
+    //         reading: "", 
+    //         writing: "", 
+    //         listening: "", 
+    //         speaking: "",
+    //     }, 
+    //     grammar: [], 
+    //     vocabulary: [], 
+    //     listening: [], 
+    //     reading: [],  
+    //     writing: [], 
+    //     speaking: [],  
+    //     pronunciation: [], 
+    // });
 
-    function handleStudentUpdate(updatedStudent: StudentResults) {
-        setIsEditing(false);
-        onUpdateStudent(updatedStudent);
-    }
+    // function handleStudentUpdate(updatedStudent: StudentResults) {
+    //     setIsEditing(false);
+    //     onUpdateStudent(updatedStudent);
+    // };
 
-    function handleChange(e: React.FormEvent<HTMLInputElement>) {
-        setEditForm({
-            ...editForm,
-            [e.currentTarget.name]: e.currentTarget.value
-        });
-        console.log([e.currentTarget.name], e.currentTarget.value);
-        
-    }
+    // function handleChange(e: React.FormEvent<HTMLInputElement>) {
+    //     setEditForm({
+    //         ...editForm,
+    //         [e.currentTarget.name]: e.currentTarget.value
+    //     });        
+    // };
 
-    function changeEditState(student: StudentResults) {
-        if(student.id === editForm.id) {
-            setIsEditing(isEditing => !isEditing)
-        } else if (isEditing === false) {
-            setIsEditing(isEditing => !isEditing)
-        }
-    }
+    // function changeEditState(student: StudentResults) {
+    //     if(student.id === editForm.id) {
+    //         setIsEditing(isEditing => !isEditing)
+    //     } else if (isEditing === false) {
+    //         setIsEditing(isEditing => !isEditing)
+    //     }
+    // };
 
-    function captureEdit(clickedStudent: any) {
-        let filtered: StudentResults[] = studentResults.filter(student => student.id === clickedStudent.id)
-        setEditForm(filtered[0])
-    }
+    // function captureEdit(clickedStudent: any) {
+    //     let filtered: StudentResults[] = studentResults.filter(student => student.id === clickedStudent.id)
+    //     setEditForm(filtered[0])
+    // };
 
     const headerStyle = "px-2 py-4 font-medium";
-    const bodyStyle = "whitespace-nowrap bg-white px-3 py-3 text-sm";
+    const bodyStyle = "whitespace-nowrap bg-white px-2 py-1 text-md";
 
     return ( 
         <div>
             <table className="min-w-full rounded-md text-gray-900 md:table">
-                <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
+                <thead className="rounded-md bg-gray-50 text-left text-lg font-normal">
                         <tr>
                             <th scope="col" className={`${headerStyle}`}>
                                 ID
@@ -108,9 +106,9 @@ export default function StudentsTable({
                             <th scope="col" className={`${headerStyle} hidden xl:table-cell`}>
                                 Teacher Comments
                             </th>
-                            <th scope="col" className={`${headerStyle}`}>
-                                EDIT
-                            </th>
+                            {/* <th scope="col" className={`${headerStyle}`}>
+                                Save
+                            </th> */}
                             <th scope="col" className={`${headerStyle}`}>
                                 DEL
                             </th>
@@ -118,15 +116,24 @@ export default function StudentsTable({
                     </thead>
  
                     <tbody>
-                        {isEditing?
+                    { studentResults.map(student => (
+                            <Student 
+                                key={student.id}
+                                student={student}
+                                style={bodyStyle}
+                                refreshData={refreshData}
+                                onUpdateStudent={onUpdateStudent}
+                            />
+                        ))}
+                        {/* {isEditing?
                             (<EditStudent
                                 editForm={editForm}
                                 handleChange={handleChange}
                                 handleStudentUpdate={handleStudentUpdate}
                                 style={bodyStyle}
                                 />) : null   
-                        }
-                        { studentResults.map(student => (
+                        } */}
+                        {/* { studentResults.map(student => (
                             <Student 
                                 key={student.id}
                                 student={student}
@@ -135,7 +142,7 @@ export default function StudentsTable({
                                 style={bodyStyle}
                                 refreshData={refreshData}
                             />
-                        ))}
+                        ))} */}
                     </tbody>
             </table>
         </div>

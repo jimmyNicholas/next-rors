@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import { CourseMetaData, StudentResults } from "@/app/lib/definitions";
 import Row from "../utility/Row";
+import { convertStudentResults } from "@/app/lib/caseConversion";
 
 export default function RecordOfResults({
     courseMetaData,
@@ -34,7 +36,7 @@ export default function RecordOfResults({
         speaking,
         pronunciation,
     } = studentResult;
-
+    
     const fullName = nickname ? `${firstName} ${lastName} (${nickname})`: `${firstName} ${lastName}`;
 
     const metaDataInfo = [
@@ -44,10 +46,61 @@ export default function RecordOfResults({
         {title: 'Class', value: className},
         {title: 'Start Date', value: startDate},
         {title: 'Finish Date', value: endDate},
-    ];
+    ];    
+    /*
+    const [isEditingStudent, setIsEditingStudent] = useState(false);
+    const [editStudentForm, setEditStudentForm] = useState<StudentResults>(studentResult);
 
-    console.log(startDate);
+    function handleStudentUpdate(updatedStudent: StudentResults) {
+        setIsEditingStudent(false);
+        onUpdateStudent(updatedStudent);
+    };
     
+    function handleChange(e: React.FormEvent<HTMLInputElement>) {
+        const {name, value} = e.currentTarget;
+        setEditStudentForm({
+            ...editStudentForm,
+            [name]: value
+        }); 
+        setIsEditingStudent(true);       
+    };
+
+    function handleOnClick(e: React.MouseEvent<HTMLInputElement>) {
+        const {name, value} = e.currentTarget;
+        if (value === studentResult[name as keyof StudentResults]) {
+            setEditStudentForm({
+                ...editStudentForm,
+                [name]: value
+            }); 
+        }
+        setIsEditingStudent(true);
+    }
+
+    async function handleEditStudentForm(e: any) {
+        e.preventDefault();
+        const {id, studentId, firstName, lastName, nickname} = editStudentForm;
+
+        if (JSON.stringify(editStudentForm) === JSON.stringify(studentResult)) {
+            setIsEditingStudent(false);
+            return;
+        }
+        try {
+            await fetch(
+                `/api/student/update?id=${id}&studentId=${studentId}&firstName=${firstName}&lastName=${lastName}&nickname=${nickname}`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res.student.rows);
+                    console.log('Student updated successfully!');
+                    const updatedStudent = convertStudentResults(res.student.rows[0]);
+                    handleStudentUpdate(updatedStudent);
+                })
+        } catch (error) {
+            console.error(error, 'Failed to update student.');
+        } finally {
+            setIsEditingStudent(false);
+        }
+    };
+    */
 
     return(  
         <div className="bg-white my-3 text-black p-2 min-w-full rounded-lg">    
@@ -80,7 +133,6 @@ export default function RecordOfResults({
                 <Row title='Vocabulary' array={vocabulary} style={'px-1'}/>
                 <Row title='Listening' array={listening} style={'px-1'}/>
                 <Row title='Reading' array={reading} style={'px-1'}/>
-
             </div>
 
             <div className="text-sm text-center">

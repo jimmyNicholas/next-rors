@@ -1,14 +1,15 @@
 'use client';
 
 import { fetchCourseResults } from "@/app/lib/data";
-import { CourseResults } from "@/app/lib/definitions"
+import { CourseMetaData, StudentResults } from "@/app/lib/definitions"
 
 import StudentTabsWrapper from "@/app/ui/rors/studentTabs";
 import RecordOfResults from "@/app/ui/rors/recordOfResult";
 import { useState, useEffect } from "react";
 
 export default function Page () {
-    const [courseResults, setCourseResults] = useState<CourseResults | undefined>(undefined);
+    const [courseMetaData, setCourseMetaData] = useState<CourseMetaData | undefined>(undefined);
+    const [studentResults, setStudentResults] = useState<StudentResults[] | undefined>([]);
     const [activeIndex, setActiveIndex] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -16,9 +17,11 @@ export default function Page () {
         async function fetchData() {
             try {
                 const courseResults = await fetchCourseResults('Foundation 1');
-                console.log(courseResults);
-                
-                setCourseResults(courseResults);
+                if (courseResults) {
+                    const { courseMetaData, studentResults} = courseResults;
+                    setCourseMetaData(courseMetaData);
+                    setStudentResults(studentResults);
+                }
             } catch (error) {
                 console.error('Student Fetch Error', error);
             } finally {
@@ -30,13 +33,26 @@ export default function Page () {
 
     if (loading) return <p>Loading...</p>;
 
-    const studentTabsText = courseResults?.studentResults?.map((studentResult)=> {
+    const studentTabsText = studentResults?.map((studentResult)=> {
         return {
             studentId: studentResult.studentId,
             firstName: studentResult.firstName,
         }
     });    
-
+    /*
+    function onUpdateStudent(updatedStudent: StudentResults) {
+        const updatedStudents = studentResults?.map(
+            student => {
+                if (student.id === updatedStudent.id) {
+                    return updatedStudent;
+                } else {
+                    return student;
+                }
+            }
+        )
+        setStudentResults(updatedStudents);
+    };
+    */
     return (
         <div className="grid justify-items-center">
             <div className="max-w-5xl">
@@ -46,10 +62,10 @@ export default function Page () {
                     setActiveIndex={setActiveIndex}
                     studentTabsText={studentTabsText ?? []}
                 />
-                {!loading && courseResults ? (
+                {!loading && (courseMetaData && studentResults) ? (
                     <RecordOfResults
-                        courseMetaData={courseResults.courseMetaData} 
-                        studentResult={courseResults.studentResults[activeIndex]}
+                        courseMetaData={courseMetaData} 
+                        studentResult={studentResults[activeIndex]}
                     />
                 ) : null}
             </div>
