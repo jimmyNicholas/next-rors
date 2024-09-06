@@ -6,6 +6,7 @@ import { CourseMetaData, StudentResults } from "@/app/lib/definitions"
 import StudentTabsWrapper from "@/app/ui/rors/studentTabs";
 import RecordOfResults from "@/app/ui/rors/recordOfResult";
 import { useState, useEffect } from "react";
+import { on } from "events";
 
 export default function Page () {
     const [courseMetaData, setCourseMetaData] = useState<CourseMetaData | undefined>(undefined);
@@ -39,7 +40,7 @@ export default function Page () {
             firstName: studentResult.firstName,
         }
     });    
-    /*
+    
     function onUpdateStudent(updatedStudent: StudentResults) {
         const updatedStudents = studentResults?.map(
             student => {
@@ -52,7 +53,7 @@ export default function Page () {
         )
         setStudentResults(updatedStudents);
     };
-    */
+    
     return (
         <div className="grid justify-items-center">
             <div className="max-w-5xl">
@@ -66,6 +67,7 @@ export default function Page () {
                     <RecordOfResults
                         courseMetaData={courseMetaData} 
                         studentResult={studentResults[activeIndex]}
+                        onUpdateStudent={onUpdateStudent}
                     />
                 ) : null}
             </div>

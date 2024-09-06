@@ -1,13 +1,5 @@
 import { CourseMetaData, StudentResults } from "./definitions";
-
-function formatDate(dateString: string) {
-    const date = new Date(dateString);
-    return  new Intl.DateTimeFormat('en-AU', {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit'
-    }).format(date);
-} 
+import { formatDate } from "../ui/utility/date";
 
 export function convertCourseMetaData(row:any): CourseMetaData {
     return {
@@ -22,14 +14,15 @@ export function convertCourseMetaData(row:any): CourseMetaData {
 };
 
 export function convertStudentResults(row:any): StudentResults {
+    
     return {
         id: row.id,
         studentId: row.student_id,
-        startDate: formatDate(row.start_date),
-        endDate: row.end_date === null ? ' ' : formatDate(row.end_date),
+        startDate: row.start_date === null ? '' : formatDate(row.start_date),
+        endDate: row.end_date === null ? '' : formatDate(row.end_date),
         firstName: row.first_name,
         lastName: row.last_name,
-        nickname: row.nickname === null ? ' ' : row.nickname,
+        nickname: row.nickname === null ? '' : row.nickname,
         participation: row.participation,
         leavers: row.leavers,
         teacherComments: row.teacher_comments,

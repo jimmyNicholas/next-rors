@@ -3,13 +3,16 @@ import { useState } from "react";
 import { CourseMetaData, StudentResults } from "@/app/lib/definitions";
 import Row from "../utility/Row";
 import { convertStudentResults } from "@/app/lib/caseConversion";
+import { formatDate, formatDateForInput } from "../utility/date";
 
 export default function RecordOfResults({
     courseMetaData,
     studentResult,
+    onUpdateStudent,
 }: {
     courseMetaData: CourseMetaData;
     studentResult: StudentResults;
+    onUpdateStudent: (updatedStudent: StudentResults) => void;
 }) {
     const {
         course, 
@@ -18,6 +21,7 @@ export default function RecordOfResults({
     } = courseMetaData;
 
     const {
+        id, 
         studentId,
         startDate,
         endDate,
@@ -39,17 +43,57 @@ export default function RecordOfResults({
     
     const fullName = nickname ? `${firstName} ${lastName} (${nickname})`: `${firstName} ${lastName}`;
 
-    const metaDataInfo = [
-        {title: 'Student', value: fullName},
-        {title: 'Student ID', value: studentId},
-        {title: 'Course', value: course},
-        {title: 'Class', value: className},
-        {title: 'Start Date', value: startDate},
-        {title: 'Finish Date', value: endDate},
-    ];    
-    /*
     const [isEditingStudent, setIsEditingStudent] = useState(false);
     const [editStudentForm, setEditStudentForm] = useState<StudentResults>(studentResult);
+    const metaDataInfo = [
+        {
+            title: 'Student', 
+            value: fullName, 
+            type: 'text', 
+            editable: false
+        },
+        {
+            title: 'Student ID', 
+            value: studentId, 
+            type: 'text', 
+            editable: false
+        },
+        {
+            title: 'Course', 
+            value: course, 
+            type: 'text', 
+            editable: false
+        },
+        {
+            title: 'Class', 
+            value: className, 
+            type: 'text', 
+            editable: false
+        },
+        {
+            title: 'Start Date', 
+            name: "startDate", 
+            value: isEditingStudent
+                ? editStudentForm.startDate
+                    ? formatDateForInput(editStudentForm.startDate) 
+                    : ''
+                : startDate
+                || '', 
+            type: 'date', 
+            editable: true
+        },
+        {
+            title: 'Finish Date',
+            name: "endDate", 
+            value: isEditingStudent
+                ? editStudentForm.endDate
+                    ? formatDateForInput(editStudentForm.endDate) 
+                    : ''
+                : endDate || '', 
+            type: 'date', 
+            editable: true
+        },
+    ]; 
 
     function handleStudentUpdate(updatedStudent: StudentResults) {
         setIsEditingStudent(false);
@@ -58,6 +102,7 @@ export default function RecordOfResults({
     
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
         const {name, value} = e.currentTarget;
+        
         setEditStudentForm({
             ...editStudentForm,
             [name]: value
@@ -78,18 +123,24 @@ export default function RecordOfResults({
 
     async function handleEditStudentForm(e: any) {
         e.preventDefault();
-        const {id, studentId, firstName, lastName, nickname} = editStudentForm;
+        const {
+            id, 
+            startDate,
+            endDate,
+            grammar,
+            vocabulary,
+        } = editStudentForm;
 
         if (JSON.stringify(editStudentForm) === JSON.stringify(studentResult)) {
             setIsEditingStudent(false);
             return;
         }
+  
         try {
             await fetch(
-                `/api/student/update?id=${id}&studentId=${studentId}&firstName=${firstName}&lastName=${lastName}&nickname=${nickname}`)
+                `/api/student/rorUpdate?id=${id}&startDate=${startDate}&endDate=${endDate}`)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res.student.rows);
                     console.log('Student updated successfully!');
                     const updatedStudent = convertStudentResults(res.student.rows[0]);
                     handleStudentUpdate(updatedStudent);
@@ -100,7 +151,7 @@ export default function RecordOfResults({
             setIsEditingStudent(false);
         }
     };
-    */
+    
 
     return(  
         <div className="bg-white my-3 text-black p-2 min-w-full rounded-lg">    
@@ -110,7 +161,23 @@ export default function RecordOfResults({
                 {metaDataInfo.map((data, index) => (
                     <React.Fragment key={index}>
                         <h3 className="border border-b-black border-r-black bg-neutral-300 font-bold col-span-2 p-1">{data.title}</h3>
-                        <h3 className="border border-b-black bg-white col-span-3 p-1">{data.value}</h3>
+                        {
+                        (isEditingStudent && data.editable) ? (
+                            <input 
+                                className="border border-b-black bg-white col-span-3 p-1"
+                                type={data.type}
+                                name={data.name}
+                                value={data.value}
+                                onClick={handleOnClick}
+                                onChange={handleChange}
+                                onBlur={handleEditStudentForm}
+                            />
+                        ): (
+                            <h3 
+                                className="border border-b-black bg-white col-span-3 p-1"
+                                onClick={handleOnClick}
+                            >{data.value}</h3> 
+                        )}
                     </React.Fragment>
                 ))}
                 <h3 className="border border-r-black bg-neutral-300 font-bold col-span-2 p-1">Teachers</h3>

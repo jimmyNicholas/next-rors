@@ -13,20 +13,6 @@ export async function GET( request: Request) {
     const writing = searchParams.get('writing') || '';
     const speaking = searchParams.get('speaking') || '';
     const pronunciation = searchParams.get('pronunciation') || '';
-    
-    let setClauses = [];
-
-    //if (grammar !== undefined) {setClauses.push(`grammar[${activeWeek}] = ${grammar}`)};
-    // if (vocabulary !== undefined) {setClauses.push(sql`vocabulary[${activeWeek}] = ${vocabulary}`)};
-    // if (listening !== undefined) {setClauses.push(sql`listening[${activeWeek}] = ${listening}`)};
-    // if (reading !== undefined) {setClauses.push(sql`reading[${activeWeek}] = ${reading}`)};
-    // if (writing !== undefined) {setClauses.push(sql`writing[${activeWeek}] = ${writing}`)};
-    // if (speaking !== undefined) {setClauses.push(sql`speaking[${activeWeek}] = ${speaking}`)};
-    // if (pronunciation !== undefined) {setClauses.push(sql`pronunciation[${activeWeek}] = ${pronunciation}`)};
-
-    //const setClause = setClauses.join(`, `);
-    //console.log(setClause);
-    
 
     try {
         if (!id) throw new Error('Id required');
